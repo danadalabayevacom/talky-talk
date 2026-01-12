@@ -1,3 +1,2 @@
 export const days =["monday","tuesday","wednesday","thursday","friday","saturday","sunday"];
-
-console.log(days[0]);
+export const daysEs =["lunes","martes","miercoles","jueves","viernes","sabado","domingo"];
