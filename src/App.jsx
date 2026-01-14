@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { days, daysEs } from "./dayOfWeeks.js";
 import { motion } from "framer-motion";
+import MotionButton from "./MotionButton.jsx";
+import clsx from "clsx";
 
 function App() {
   const [index, setIndex] = useState(getRandomIdx(days));
@@ -44,6 +46,14 @@ function App() {
     );
   };
 
+  let isUserAnswered;
+
+  if (answer === true || answer === false) {
+    isUserAnswered = true;
+  } else {
+    isUserAnswered = false;
+  }
+
   return (
     <div className="flex justify-center min-h-screen items-center bg-gradient-to-b from-sky-50 to-blue-100">
       <div className="flex flex-col justify-between w-full max-w-md p-6">
@@ -66,37 +76,23 @@ function App() {
             placeholder="Enter day in Spanish"
           />
 
-          <div className="text-center mt-4">
-            {getMessage(answer)}
-          </div>
+          <div className="text-center mt-4">{getMessage(answer)}</div>
 
           <div className="flex justify-center mt-6 gap-3">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              animate={
-                answer === true
-                  ? { backgroundColor: "#2563eb" } // blue-600
-                  : answer === false
-                  ? { backgroundColor: "#60a5fa" } // blue-400
-                  : {}
-              }
-              transition={{ type: "spring", stiffness: 300 }}
-              className="flex-1 text-white bg-blue-500 rounded-lg py-2 px-4 border-2 border-blue-700"
+            <MotionButton
+              className={clsx("flex-1 text-white rounded-lg py-2 px-4 border-2 border-blue-700", isUserAnswered ? "bg-blue-400" :  "bg-blue-500")}
               onClick={onClickCheck}
+              disabled={isUserAnswered}
             >
               Check
-            </motion.button>
+            </MotionButton>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: "spring", stiffness: 300 }}
+            <MotionButton
               className="flex-1 text-white bg-sky-500 rounded-lg py-2 px-4 border-2 border-sky-700"
               onClick={onClickNext}
             >
               Next
-            </motion.button>
+            </MotionButton>
           </div>
         </div>
 
