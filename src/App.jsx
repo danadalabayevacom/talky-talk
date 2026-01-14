@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { days, daysEs } from "./dayOfWeeks.js";
+import { motion } from "framer-motion";
 
 function App() {
   const [index, setIndex] = useState(getRandomIdx(days));
@@ -50,11 +51,11 @@ function App() {
 
   return (
     <>
-      <div className="flex justify-center min-h-screen  bg-slate-50">
+      <div className="flex justify-center min-h-screen bg-slate-50">
         <div className="flex flex-col justify-between">
-          <div className="text-3xl text-center text-bold mt-20">
+          <h1 className="text-3xl text-center text-semibold tracking-tight mt-20 text-indigo-700">
             Days of Week
-          </div>
+          </h1>
           <div className="flex flex-col ">
             <div className="text-center text-xl text-indigo-600">
               {days[index]}
@@ -69,25 +70,37 @@ function App() {
               placeholder="enter day of the week in spanish"
             />
             <div className="text-center">{getMessage(answer)}</div>
-            <div className="flex justify-center mt-4">
-              <button
-                className="flex-1 bg-sky-500 hover:bg-sky-700  rounded-lg py-2 px-4"
+            <div className="flex justify-center mt-4 gap-2">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={
+                  answer === true
+                    ? { backgroundColor: "#22c55e" } // green
+                    : answer === false
+                    ? { backgroundColor: "#ef4444" } // red
+                    : {}
+                }
+                transition={{ type: "spring", stiffness: 300 }}
+                className="flex-1 text-white bg-sky-500 rounded-lg py-2 px-4 border-2 border-sky-700"
                 onClick={onClickCheck}
                 // todo add clcik action add border
               >
                 check
-              </button>
-              <button
-                className="flex-1 bg-pink-300 hover:bg-pink-400 ml-2 rounded-lg py-2 px-4"
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95}}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="flex-1 text-white bg-pink-400 ml-2 rounded-lg py-2 px-4 border-2 border-pink-700"
                 onClick={onClcikNext}
-
               >
                 next
-              </button>
+              </motion.button>
             </div>
           </div>
           <div></div>
-          <div className="absolute top-20 right-40 text-violet-400 text-3xl border border-red-400">
+          <div className="absolute top-20 right-40 text-violet-400 text-3xl">
             {count}
           </div>
         </div>
