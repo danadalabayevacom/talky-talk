@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { days, daysEs } from "./dayOfWeeks.js";
 import { motion } from "framer-motion";
 import MotionButton from "./MotionButton.jsx";
 import clsx from "clsx";
+import ScoreCounter from "./ScoreCounter.jsx";
 
 function App() {
   const [index, setIndex] = useState(getRandomIdx(days));
   const [userInput, setUserInput] = useState("");
   const [answer, setAnswer] = useState(null);
-  const [count, setCount] = useState(0);
+  const [score, setScore] = useState(0);
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
@@ -20,11 +21,12 @@ function App() {
 
     if (expected === userValue) {
       setAnswer(true);
-      setCount((prev) => prev + 1);
+      setScore((prev) => prev + 10);
     } else {
       setAnswer(false);
     }
   };
+
 
   const onClickNext = () => {
     setIndex(getRandomIdx(days));
@@ -40,7 +42,7 @@ function App() {
       return <div className="text-blue-600 font-semibold">Correct ✅</div>;
     }
     return (
-      <div className="text-blue-400">
+      <div className="text-red-400">
         The expected answer is: <b>{daysEs[index]}</b>
       </div>
     );
@@ -80,7 +82,10 @@ function App() {
 
           <div className="flex justify-center mt-6 gap-3">
             <MotionButton
-              className={clsx("flex-1 text-white rounded-lg py-2 px-4 border-2 border-blue-700", isUserAnswered ? "bg-blue-400" :  "bg-blue-500")}
+              className={clsx(
+                "flex-1 text-white rounded-lg py-2 px-4 border-2 border-blue-700",
+                isUserAnswered ? "bg-blue-400" : "bg-blue-500"
+              )}
               onClick={onClickCheck}
               disabled={isUserAnswered}
             >
@@ -95,10 +100,9 @@ function App() {
             </MotionButton>
           </div>
         </div>
-
-        <div className="absolute top-20 right-40 text-blue-500 text-3xl font-bold">
-          {count}
-        </div>
+      <div  className="absolute top-20 right-40 text-blue-500 text-3xl font-bold">
+        <ScoreCounter score={score}/>
+      </div>
       </div>
     </div>
   );
@@ -109,3 +113,4 @@ const getRandomIdx = (array) => {
 };
 
 export default App;
+
