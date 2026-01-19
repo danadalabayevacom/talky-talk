@@ -59,8 +59,7 @@ function DayOfWeeksPage() {
   }
 
   return (
-    <div className="bg-gradient-to-b from-sky-50 to-blue-100">
-      <div className="flex justify-center min-h-screen items-center ">
+      <div className="flex justify-center  items-center ">
         <div className="flex flex-col justify-between w-full max-w-md p-6">
           <h1 className="text-3xl text-center font-semibold tracking-tight mt-16 text-blue-700">
             Days of the Week
@@ -103,12 +102,11 @@ function DayOfWeeksPage() {
               </MotionButton>
             </div>
           </div>
-          <div className="absolute top-20 right-40 text-blue-500 text-3xl font-bold">
+          <div className="absolute top-30 right-20 text-blue-500 text-3xl font-bold">
             <ScoreCounter score={score} />
           </div>
         </div>
       </div>
-    </div>
   );
 }
 

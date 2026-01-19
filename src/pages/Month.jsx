@@ -1,5 +1,5 @@
 const Month = () => {
-    return <div className="flex justify-center py-80 bg-violet-200">
+    return <div className="flex justify-center py-80">
         month
     </div>
 };
