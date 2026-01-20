@@ -22,8 +22,8 @@ const getClass=(to, location)=>{
           Days of Weeks
         </Link>
         <Link
-          to="/month"
-          className={getClass("/month",location)}
+          to="/months"
+          className={getClass("/months",location)}
         >
           Month
         </Link>
