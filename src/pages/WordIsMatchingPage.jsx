@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { days, daysEs } from "../dayOfWeeks.js";
+import { days } from "../data.js";
 import { motion } from "framer-motion";
 import MotionButton from "../components/MotionButton.jsx";
 import clsx from "clsx";
@@ -8,7 +8,7 @@ import ScoreCounter from "../components/ScoreCounter.jsx";
 
 
 
-function DayOfWeeksPage() {
+function WordIsMatchingPage() {
   const [index, setIndex] = useState(getRandomIdx(days));
   const [userInput, setUserInput] = useState("");
   const [answer, setAnswer] = useState(null);
@@ -19,7 +19,7 @@ function DayOfWeeksPage() {
   };
 
   const onClickCheck = () => {
-    const expected = daysEs[index];
+    const expected = days[index].esp;
     const userValue = userInput.trim().toLowerCase();
 
     if (expected === userValue) {
@@ -45,7 +45,7 @@ function DayOfWeeksPage() {
     }
     return (
       <div className="text-red-400">
-        The expected answer is: <b>{daysEs[index]}</b>
+        The expected answer is: <b>{days[index].esp}</b>
       </div>
     );
   };
@@ -67,7 +67,7 @@ function DayOfWeeksPage() {
 
           <div className="flex flex-col mt-10">
             <div className="text-center text-2xl font-medium text-blue-600">
-              {days[index]}
+           {days[index].en}
             </div>
 
             <input
@@ -114,4 +114,4 @@ const getRandomIdx = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-export default DayOfWeeksPage;
+export default WordIsMatchingPage;
