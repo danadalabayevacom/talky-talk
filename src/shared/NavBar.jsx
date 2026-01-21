@@ -28,6 +28,12 @@ const getClass=(to, location)=>{
           Month
         </Link>
         <Link
+          to="/numbers"
+          className={getClass("/numbers",location)}
+        >
+          Numbers
+        </Link>
+        <Link
           to="/gender"
           className={getClass("/gender",location)}
         >

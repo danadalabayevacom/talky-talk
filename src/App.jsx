@@ -3,9 +3,12 @@ import WordIsMatchingPage from "./pages/WordIsMatchingPage";
 import GenderPage from "./pages/GenderPage";
 import About from "./pages/About";
 import NavBar from "./shared/NavBar";
-import { days, months } from "./data";
+import { days, months, numbers } from "./data";
+import React, { useState } from "react";
 
 function App() {
+  const [score, setScore] = useState(0);
+
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-sky-50 to-blue-100">
       <BrowserRouter>
@@ -20,6 +23,8 @@ function App() {
                 words={days}
                 title="Days of the Week"
                 placeholder="Enter day in Spanish"
+                score={score}
+                setScore={setScore}
               />
             }
           />
@@ -29,8 +34,23 @@ function App() {
               <WordIsMatchingPage
                 key="months"
                 words={months}
-                title="month"
+                title="Months"
                 placeholder="Enter month in Spanish"
+                score={score}
+                setScore={setScore}
+              />
+            }
+          />
+          <Route
+            path="/numbers"
+            element={
+              <WordIsMatchingPage
+                key="numbers"
+                words={numbers}
+                title="Numbers"
+                placeholder="Enter number in Spanish"
+                score={score}
+                setScore={setScore}
               />
             }
           />

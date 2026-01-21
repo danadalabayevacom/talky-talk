@@ -4,13 +4,10 @@ import MotionButton from "../components/MotionButton.jsx";
 import clsx from "clsx";
 import ScoreCounter from "../components/ScoreCounter.jsx";
 
-
-function WordIsMatchingPage({words, title, placeholder}) {
-
+function WordIsMatchingPage({ words, title, placeholder, score, setScore }) {
   const [index, setIndex] = useState(getRandomIdx(words));
   const [userInput, setUserInput] = useState("");
   const [answer, setAnswer] = useState(null);
-  const [score, setScore] = useState(0);
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
@@ -60,7 +57,7 @@ function WordIsMatchingPage({words, title, placeholder}) {
     <div className="flex justify-center  items-center ">
       <div className="flex flex-col justify-between w-full max-w-md p-6">
         <h1 className="text-3xl text-center font-semibold tracking-tight mt-16 text-blue-700">
-        {title}
+          {title}
         </h1>
 
         <div className="flex flex-col mt-10">
@@ -75,7 +72,7 @@ function WordIsMatchingPage({words, title, placeholder}) {
             type="text"
             value={userInput}
             onChange={handleChange}
-        placeholder={placeholder}
+            placeholder={placeholder}
           />
 
           <div className="text-center mt-4">{getMessage(answer)}</div>
