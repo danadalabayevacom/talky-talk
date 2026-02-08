@@ -45,3 +45,26 @@ export const days = [
     { en: "17", esp: "diecisiete" },
     { en: "48", esp: "cuarenta y ocho" }
   ];
+
+  export const wordsWithGender = [
+    { word: "agua",     gender: "el" }, // el agua (feminine noun, phonetic rule)
+    { word: "casa",     gender: "la" },
+    { word: "libro",    gender: "el" },
+    { word: "mesa",     gender: "la" },
+    { word: "pan",      gender: "el" },
+    { word: "escuela",  gender: "la" },
+    { word: "coche",    gender: "el" },
+    { word: "ciudad",   gender: "la" },
+    { word: "perro",    gender: "el" },
+    { word: "persona",  gender: "la" },
+    { word: "día",      gender: "el" },
+    { word: "noche",    gender: "la" },
+    { word: "amigo",    gender: "el" },
+    { word: "familia",  gender: "la" },
+    { word: "problema", gender: "el" },
+    { word: "mano",     gender: "la" },
+    { word: "mapa",     gender: "el" },
+    { word: "flor",     gender: "la" },
+    { word: "árbol",    gender: "el" },
+    { word: "comida",   gender: "la" }
+  ];

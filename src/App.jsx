@@ -54,7 +54,13 @@ function App() {
               />
             }
           />
-          <Route path="/gender" element={<GenderPage />} />
+          <Route 
+          path="/gender" 
+          element={<GenderPage
+            score={score}
+            setScore={setScore}
+            />}
+           />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>

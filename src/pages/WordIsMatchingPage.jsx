@@ -65,15 +65,23 @@ function WordIsMatchingPage({ words, title, placeholder, score, setScore }) {
             {words[index].en}
           </div>
 
-          <input
-            className="mt-6 p-3 text-xl text-center border border-blue-300 rounded-lg
+          <div className="mt-6 relative">
+            <input
+              className="w-full h-12 text-xl text-center border border-blue-300 rounded-lg
               focus:outline-none focus:ring-2 focus:ring-blue-500
-              transition bg-white"
-            type="text"
-            value={userInput}
-            onChange={handleChange}
-            placeholder={placeholder}
-          />
+              transition bg-white "
+              type="text"
+              value={userInput}
+              onChange={handleChange}
+              placeholder={placeholder}
+            />
+            <button
+              className="absolute top-3 right-2 rounded-lg"
+              onClick={() => setUserInput("")}
+            >
+              <i className="fa-solid fa-x text-gray-400 text-2xl"></i>
+            </button>
+          </div>
 
           <div className="text-center mt-4">{getMessage(answer)}</div>
 
