@@ -7,7 +7,12 @@ import { days, months, numbers } from "./data";
 import React, { useState } from "react";
 
 function App() {
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(Number(localStorage.getItem("score")));
+
+  const mySetScore = () => {
+    localStorage.setItem("score", score + 10);
+    setScore((prev) => prev + 10);
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-b from-sky-50 to-blue-100">
@@ -24,7 +29,7 @@ function App() {
                 title="Days of the Week"
                 placeholder="Enter day in Spanish"
                 score={score}
-                setScore={setScore}
+                setScore={mySetScore}
               />
             }
           />
@@ -37,7 +42,7 @@ function App() {
                 title="Months"
                 placeholder="Enter month in Spanish"
                 score={score}
-                setScore={setScore}
+                setScore={mySetScore}
               />
             }
           />
@@ -50,17 +55,14 @@ function App() {
                 title="Numbers"
                 placeholder="Enter number in Spanish"
                 score={score}
-                setScore={setScore}
+                setScore={mySetScore}
               />
             }
           />
-          <Route 
-          path="/gender" 
-          element={<GenderPage
-            score={score}
-            setScore={setScore}
-            />}
-           />
+          <Route
+            path="/gender"
+            element={<GenderPage score={score} setScore={mySetScore} />}
+          />
           <Route path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>

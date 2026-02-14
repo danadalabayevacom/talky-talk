@@ -19,7 +19,7 @@ function GenderPage({ score, setScore }) {
     const expected = words[index].gender;
     if (expected === gender) {
       setAnswer(true);
-      setScore((prev) => prev + 10);
+      setScore();
     } else {
       setAnswer(false);
     }

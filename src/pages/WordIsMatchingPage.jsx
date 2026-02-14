@@ -6,16 +6,16 @@ import ScoreCounter from "../components/ScoreCounter.jsx";
 
 function WordIsMatchingPage({ words, title, placeholder, score, setScore }) {
   const [index, setIndex] = useState(getRandomIdx(words));
-  const [userInput, setUserInput] = useState("");//1.Создаем состояние для хранения текста
+  const [userInput, setUserInput] = useState(""); //1.Создаем состояние для хранения текста
   const [answer, setAnswer] = useState(null);
 
   const handleChange = (e) => {
     setUserInput(e.target.value); //2.Сохраняем текст в состояние при каждом изменении
   };
-  const onSubmit=(e)=>{
+  const onSubmit = (e) => {
     e.preventDefault();
     onClickCheck();
-  }
+  };
 
   const onClickCheck = () => {
     const expected = words[index].esp;
@@ -23,7 +23,7 @@ function WordIsMatchingPage({ words, title, placeholder, score, setScore }) {
 
     if (expected === userValue) {
       setAnswer(true);
-      setScore((prev) => prev + 10);
+      setScore();
     } else {
       setAnswer(false);
     }
@@ -57,8 +57,6 @@ function WordIsMatchingPage({ words, title, placeholder, score, setScore }) {
     isUserAnswered = false;
   }
 
-
-
   return (
     <div className="flex justify-center  items-center ">
       <div className="flex flex-col justify-between w-full max-w-md p-6">
@@ -73,15 +71,15 @@ function WordIsMatchingPage({ words, title, placeholder, score, setScore }) {
 
           <div className="mt-6 relative">
             <form onSubmit={onSubmit}>
-            <input
-              className="w-full h-12 text-xl text-center border border-blue-300 rounded-lg
+              <input
+                className="w-full h-12 text-xl text-center border border-blue-300 rounded-lg
               focus:outline-none focus:ring-2 focus:ring-blue-500
               transition bg-white "
-              type="text"
-              value={userInput}//3.Поле ввода контролируется состоянием
-              onChange={handleChange}
-              placeholder={placeholder}
-            />
+                type="text"
+                value={userInput} //3.Поле ввода контролируется состоянием
+                onChange={handleChange}
+                placeholder={placeholder}
+              />
             </form>
             <button
               className="absolute top-3 right-2 rounded-lg"
