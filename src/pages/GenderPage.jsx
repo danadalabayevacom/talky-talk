@@ -9,8 +9,15 @@ function GenderPage({ score, setScore }) {
   const [index, setIndex] = useState(getRandomIdx(words));
   const [answer, setAnswer] = useState(null);
 
-  // const [favorite, setFavorite] = useState([]);
-  const [favorite, setFavorite] = useState(localStorage.getItem("word").split(","));
+  const [favorite, setFavorite] = useState(() => {
+    const starword = localStorage.getItem("word");
+    if (starword) {
+      return starword.split(",");
+    } else {
+      return [];
+    }
+  });
+
   const onClickNext = () => {
     setIndex(getRandomIdx(words));
     setAnswer(null);
@@ -48,7 +55,6 @@ function GenderPage({ score, setScore }) {
   }
 
   const word = words[index].word;
-  console.log(word);
 
   return (
     <div className="flex justify-center  items-center ">
@@ -73,7 +79,7 @@ function GenderPage({ score, setScore }) {
                   "flex-1 text-white rounded-lg py-2 px-4 border-2 border-pink-400",
                   isUserAnswered ? "bg-pink-400" : "bg-pink-500"
                 )}
-              onClick={()=>onClick('el')}
+                onClick={() => onClick("el")}
                 disabled={isUserAnswered}
               >
                 el
@@ -83,7 +89,7 @@ function GenderPage({ score, setScore }) {
                   "flex-1 text-white rounded-lg py-2 px-4 border-2 border-violet-400",
                   isUserAnswered ? "bg-violet-400" : "bg-violet-500"
                 )}
-              onClick={()=>onClick('la')}
+                onClick={() => onClick("la")}
                 disabled={isUserAnswered}
               >
                 la
@@ -110,7 +116,7 @@ const getRandomIdx = (array) => {
 };
 
 const toggleFavorite = (favorite, word, setFavorite) => {
-  console.log( favorite);
+  console.log(favorite);
   return favorite.includes(word) ? (
     <i
       className="fa-solid fa-star ml-2"
@@ -128,9 +134,7 @@ const toggleFavorite = (favorite, word, setFavorite) => {
       onClick={() =>
         setFavorite((prev) => {
           const result = [...prev, word];
-
           localStorage.setItem("word", result);
-
           return result;
         })
       }
