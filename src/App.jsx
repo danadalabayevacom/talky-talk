@@ -7,10 +7,10 @@ import { days, months, numbers } from "./data";
 import React, { useState } from "react";
 
 function App() {
-  const [score, setScore] = useState(Number(localStorage.getItem("score")));
+  const [score, setScore] = useState(Number(localStorage.getItem("score")));//получить
 
   const mySetScore = () => {
-    localStorage.setItem("score", score + 10);
+    localStorage.setItem("score", score + 10);//дать/записать
     setScore((prev) => prev + 10);
   };
 

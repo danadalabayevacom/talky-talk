@@ -9,7 +9,8 @@ function GenderPage({ score, setScore }) {
   const [index, setIndex] = useState(getRandomIdx(words));
   const [answer, setAnswer] = useState(null);
 
-
+  // const [favorite, setFavorite] = useState([]);
+  const [favorite, setFavorite] = useState(localStorage.getItem("word").split(","));
   const onClickNext = () => {
     setIndex(getRandomIdx(words));
     setAnswer(null);
@@ -46,6 +47,9 @@ function GenderPage({ score, setScore }) {
     isUserAnswered = false;
   }
 
+  const word = words[index].word;
+  console.log(word);
+
   return (
     <div className="flex justify-center  items-center ">
       <div className="flex flex-col justify-between w-full max-w-md p-6">
@@ -55,33 +59,35 @@ function GenderPage({ score, setScore }) {
 
         <div className="flex flex-col mt-10">
           <div className="text-center text-2xl font-medium text-blue-600">
-            {words[index].word}
+            {word}
+
+            {toggleFavorite(favorite, word, setFavorite)}
           </div>
 
           <div className="text-center mt-4">{getMessage(answer)}</div>
 
           <div className="flex flex-col justify-center mt-6 gap-3">
             <div className="flex">
-            <MotionButton
-              className={clsx(
-                "flex-1 text-white rounded-lg py-2 px-4 border-2 border-pink-400",
-                isUserAnswered ? "bg-pink-400" : "bg-pink-500"
-              )}
+              <MotionButton
+                className={clsx(
+                  "flex-1 text-white rounded-lg py-2 px-4 border-2 border-pink-400",
+                  isUserAnswered ? "bg-pink-400" : "bg-pink-500"
+                )}
               onClick={()=>onClick('el')}
-              disabled={isUserAnswered}
-            >
-              el
-            </MotionButton>
-            <MotionButton
-              className={clsx(
-                "flex-1 text-white rounded-lg py-2 px-4 border-2 border-violet-400",
-                isUserAnswered ? "bg-violet-400" : "bg-violet-500"
-              )}
+                disabled={isUserAnswered}
+              >
+                el
+              </MotionButton>
+              <MotionButton
+                className={clsx(
+                  "flex-1 text-white rounded-lg py-2 px-4 border-2 border-violet-400",
+                  isUserAnswered ? "bg-violet-400" : "bg-violet-500"
+                )}
               onClick={()=>onClick('la')}
-              disabled={isUserAnswered}
-            >
-            la
-            </MotionButton>
+                disabled={isUserAnswered}
+              >
+                la
+              </MotionButton>
             </div>
             <MotionButton
               className="flex-1 text-white bg-sky-500 rounded-lg py-2 px-4 border-2 border-sky-700"
@@ -101,6 +107,35 @@ function GenderPage({ score, setScore }) {
 
 const getRandomIdx = (array) => {
   return Math.floor(Math.random() * array.length);
+};
+
+const toggleFavorite = (favorite, word, setFavorite) => {
+  console.log( favorite);
+  return favorite.includes(word) ? (
+    <i
+      className="fa-solid fa-star ml-2"
+      onClick={() =>
+        setFavorite((prev) => {
+          const result = prev.filter((item) => item !== word);
+          localStorage.getItem("word", result);
+          return result;
+        })
+      }
+    ></i>
+  ) : (
+    <i
+      className="fa-regular fa-star ml-2"
+      onClick={() =>
+        setFavorite((prev) => {
+          const result = [...prev, word];
+
+          localStorage.setItem("word", result);
+
+          return result;
+        })
+      }
+    ></i>
+  );
 };
 
 export default GenderPage;
