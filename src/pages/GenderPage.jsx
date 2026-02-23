@@ -4,6 +4,8 @@ import MotionButton from "../components/MotionButton.jsx";
 import clsx from "clsx";
 import ScoreCounter from "../components/ScoreCounter.jsx";
 import { wordsWithGender as words3 } from ".././data.js";
+import WordList from "./WordList.jsx";
+import ToggleFavorite from "../components/ToggleFavorite.jsx";
 
 function GenderPage({ score, setScore }) {
   const [sourceList, setSourceList] = useState("word");
@@ -125,11 +127,18 @@ function GenderPage({ score, setScore }) {
               value={sourceList}
               onChange={(e) => setSourceList(e.target.value)}
             >
-              <option value="word">word</option>
-              <option value="favorite">favorite</option>
+              <option value="word">All Words</option>
+              <option value="favorite">Favorite Words</option>
             </select>
-            {word}
-            {toggleFavorite(favorite, word, setFavorite)}
+            <div className="mr-2 mt-2">
+
+              {word}
+              <ToggleFavorite
+                favorite={favorite}
+                word={word}
+                setFavorite={setFavorite}
+              />
+            </div>
           </div>
           {favorite.length === 0 && sourceList === "favorite" ? <div className="text-xl text-rose-400 text-center">You may choose your favorite words...
           </div> : renderGameControls()}
@@ -146,30 +155,4 @@ const getRandomIdx = (array) => {
   return Math.floor(Math.random() * array.length);
 };
 
-const toggleFavorite = (favorite, word, setFavorite) => {
-  console.log(favorite);
-  return favorite.includes(word) ? (
-    <i
-      className="fa-solid fa-star ml-2"
-      onClick={() =>
-        setFavorite((prev) => {
-          const result = prev.filter((item) => item !== word);
-          localStorage.setItem("word", result);
-          return result;
-        })
-      }
-    ></i>
-  ) : (
-    <i
-      className="fa-regular fa-star ml-2"
-      onClick={() =>
-        setFavorite((prev) => {
-          const result = [...prev, word];
-          localStorage.setItem("word", result);
-          return result;
-        })
-      }
-    ></i>
-  );
-};
 export default GenderPage;
