@@ -100,7 +100,6 @@ function GenderPage({ score, setScore }) {
       </div>
     );
   };
-
   let isUserAnswered;
 
   if (answer === true || answer === false) {
@@ -108,46 +107,37 @@ function GenderPage({ score, setScore }) {
   } else {
     isUserAnswered = false;
   }
-
   const word = words[index]?.word ?? "";
-
-  console.log(sourceList);
+  console.log("sourceList:",sourceList);
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex flex-col justify-between w-full max-w-md p-6">
-        <h1 className="text-3xl text-center font-semibold tracking-tight mt-16 text-blue-700">
-          Gender Page
-        </h1>
-
-        <div className="flex flex-col mt-10">
-          <div className="text-center text-2xl font-medium text-blue-600">
-            <select
-              id="word-select"
-              value={sourceList}
-              onChange={(e) => setSourceList(e.target.value)}
-            >
-              <option value="word">All Words</option>
-              <option value="favorite">Favorite Words</option>
-            </select>
-            <div className="mr-2 mt-2">
-
-              {word}
-              <ToggleFavorite
-                favorite={favorite}
-                word={word}
-                setFavorite={setFavorite}
-              />
+    <>
+      <div className="flex justify-between items-center">    
+        <WordList favorite={favorite} sourceList={sourceList} setFavorite={setFavorite} setSourceList={setSourceList}
+        />
+        <div className="flex flex-col justify-between w-full max-w-md p-6">
+          <h1 className="text-3xl text-center font-semibold tracking-tight mt-16 text-blue-700">
+            Gender Page
+          </h1>
+          <div className="flex flex-col mt-10">
+            <div className="text-center text-2xl font-medium text-blue-600">
+              <div className="mr-2 mt-2">{word}</div>
             </div>
+            {favorite.length === 0 && sourceList === "favorite" ? (
+              <div className="text-xl text-rose-400 text-center">
+                You may choose your favorite words...
+              </div>
+            ) : (
+              renderGameControls()
+            )}
           </div>
-          {favorite.length === 0 && sourceList === "favorite" ? <div className="text-xl text-rose-400 text-center">You may choose your favorite words...
-          </div> : renderGameControls()}
+          <div className="absolute top-30 right-20 text-blue-500 text-3xl font-bold">
+            <ScoreCounter score={score} />
+          </div>
         </div>
-        <div className="absolute top-30 right-20 text-blue-500 text-3xl font-bold">
-          <ScoreCounter score={score} />
-        </div>
+        <div></div>
       </div>
-    </div>
+    </>
   );
 }
 
