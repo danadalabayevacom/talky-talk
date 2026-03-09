@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WordIsMatchingPage from "./pages/WordIsMatchingPage";
 import GenderPage from "./pages/GenderPage";
-import About from "./pages/About";
 import NavBar from "./shared/NavBar";
 import { days, months, numbers } from "./data";
 import React, { useState } from "react";
@@ -63,7 +62,7 @@ function App() {
             path="/gender"
             element={<GenderPage score={score} setScore={mySetScore} />}
           />
-          <Route path="/about" element={<About />} />
+         
         </Routes>
       </BrowserRouter>
     </div>

@@ -39,12 +39,6 @@ const getClass=(to, location)=>{
         >
           Gender
         </Link>
-        <Link
-          to="/about"
-          className={getClass("/about",location)}
-        >
-          About
-        </Link>
       </div>
     </nav>
   );

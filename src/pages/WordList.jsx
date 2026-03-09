@@ -3,9 +3,7 @@ import ToggleFavorite from "../components/ToggleFavorite.jsx";
 import React, { useState } from "react";
 
 function WordList({ favorite, setFavorite, sourceList, setSourceList }) {
-
-const [search,setSearch]=useState("");
-
+  const [search, setSearch] = useState("");
 
   const favoriteWords = wordsWithGender.filter((it) =>
     favorite.includes(it.word)
@@ -19,9 +17,9 @@ const [search,setSearch]=useState("");
     list = wordsWithGender;
   }
 
-// const userValue = userInput.trim().toLowerCase();
-  list = list.filter((it)=>it.word.trim().toLowerCase().includes(search.trim().toLowerCase()))
-
+  list = list.filter((it) =>
+    it.word.trim().toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   console.log(search);
 
@@ -37,7 +35,7 @@ const [search,setSearch]=useState("");
     </li>
   ));
   return (
-    <div className="text-xl text-black px-20 mt-5">
+    <div className="text-xl text-blue-600 px-20 mt-5">
       <select
         id="word-select"
         value={sourceList}
@@ -46,13 +44,20 @@ const [search,setSearch]=useState("");
         <option value="word">All Words</option>
         <option value="favorite">Favorite Words</option>
       </select>
-      <input 
-      type="text" 
-      placeholder="start typing"
-      value={search}
-      onChange={(e)=>setSearch(e.target.value)}
-      />
-      <ul>{listItems}</ul>
+      <div>
+        {" "}
+        <input
+          className="border border-blue-300 rounded-lg
+              focus:outline-none focus:ring-2 focus:ring-blue-500
+              transition bg-white mt-3" 
+          type="text"
+          placeholder="start typing"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
+
+      <ul className="mt-4">{listItems}</ul>
     </div>
   );
 }
